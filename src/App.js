@@ -47,32 +47,11 @@ function App() {
     }
   }, [showYes]);
 
-  const saveResponse = async (response) => {
-    try {
-      await fetch('/api/save-response', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          response: response,
-          timestamp: new Date().toISOString(),
-          userAgent: navigator.userAgent
-        })
-      });
-    } catch (error) {
-      console.error('Failed to save response:', error);
-      // Don't show error to user, just log it
-    }
-  };
-
   const handleYesClick = () => {
-    saveResponse('yes');
     setShowYes(true);
   };
 
   const handleMaybeClick = () => {
-    saveResponse('maybe');
     setShowRetry(true);
   };
 
