@@ -1,0 +1,410 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Background */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.stars,
+.twinkling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background: #000 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.8"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.6"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.7"/><circle cx="60" cy="10" r="1" fill="white" opacity="0.5"/><circle cx="10" cy="60" r="1" fill="white" opacity="0.9"/></svg>') repeat;
+  z-index: 0;
+}
+
+.twinkling {
+  background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="50" cy="50" r="1.5" fill="white" opacity="0.3"/><circle cx="150" cy="100" r="1.5" fill="white" opacity="0.4"/><circle cx="100" cy="150" r="1.5" fill="white" opacity="0.2"/></svg>') repeat;
+  z-index: 1;
+  animation: move-twink-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-10000px);
+  }
+}
+
+/* Intro Screen */
+.intro-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  animation: fadeIn 1s ease-in;
+}
+
+.intro-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 60px 40px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  max-width: 500px;
+  animation: slideUp 0.8s ease-out;
+}
+
+.intro-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  color: #764ba2;
+  margin-bottom: 20px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.intro-text {
+  font-size: 1.3rem;
+  color: #555;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.reveal-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(118, 75, 162, 0.4);
+  transition: all 0.3s ease;
+  animation: float 3s ease-in-out infinite;
+}
+
+.reveal-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(118, 75, 162, 0.5);
+}
+
+.reveal-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.reveal-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Proposal Container */
+.proposal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  animation: fadeIn 0.8s ease-in;
+}
+
+.proposal-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 50px 40px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  max-width: 600px;
+  animation: slideUp 0.8s ease-out;
+}
+
+.lawyer-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.proposal-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  color: #764ba2;
+  margin-bottom: 30px;
+}
+
+.proposal-text {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  text-align: left;
+  min-height: 200px;
+}
+
+.proposal-text p {
+  margin-bottom: 20px;
+}
+
+.text-visible {
+  opacity: 1;
+  animation: fadeInText 0.8s ease-out;
+}
+
+.text-appearing {
+  opacity: 0;
+  animation: fadeInText 1s ease-out forwards;
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading-dots {
+  display: inline-block;
+  animation: loadingDots 1.5s ease-in-out infinite;
+  font-size: 2rem;
+  margin-left: 10px;
+}
+
+@keyframes loadingDots {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.question-text {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #764ba2;
+  margin: 30px 0;
+  animation: fadeInText 0.8s ease-out;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.yes-button,
+.maybe-button {
+  padding: 15px 35px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.yes-button {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.yes-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(245, 87, 108, 0.4);
+}
+
+.maybe-button {
+  background: rgba(255, 255, 255, 0.9);
+  color: #764ba2;
+  border: 2px solid #764ba2;
+}
+
+.maybe-button:hover {
+  background: #764ba2;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Success Screen */
+.success-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  animation: fadeIn 0.8s ease-in;
+}
+
+.success-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 60px 40px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  max-width: 500px;
+  z-index: 10;
+  animation: scaleIn 0.6s ease-out;
+}
+
+.success-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  color: #f5576c;
+  margin-bottom: 20px;
+  animation: bounce 1s ease-in-out;
+}
+
+.success-text {
+  font-size: 1.3rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.floating-heart {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatUp 4s ease-out forwards;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(0.5);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .intro-title {
+    font-size: 2.5rem;
+  }
+  
+  .proposal-title {
+    font-size: 2.2rem;
+  }
+  
+  .proposal-content {
+    padding: 40px 30px;
+  }
+  
+  .button-container {
+    flex-direction: column;
+  }
+  
+  .yes-button,
+  .maybe-button {
+    width: 100%;
+  }
+  
+  .success-title {
+    font-size: 3rem;
+  }
+}
